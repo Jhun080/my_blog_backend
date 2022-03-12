@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface ArticleDao {
-    //查询全部文章1
+    //查询全部文章
     public List<Article> findAllArticle();
 }
