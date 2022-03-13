@@ -19,4 +19,9 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findAllArticle(){
         return articleDao.findAllArticle();
     }
+
+    //通过id查询文章
+    public Article findArticleById(int article_id){
+        return articleDao.findArticleById(article_id);
+    }
 }

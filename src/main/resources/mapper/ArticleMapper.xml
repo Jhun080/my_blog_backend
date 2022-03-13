@@ -2,8 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace= "com.cmx.dao.ArticleDao" >
+    <!--通过id查询关联表中的检查组的详情-->
+    <!--  column表示数据库中字段名；property表示实体类中属性名  -->
+    <resultMap id="baseArticleResultMap" type="com.cmx.entity.Article">
+        <id column="article_id" property="article_id"/>
+        <result column="article_title" property="article_title"/>
+        <result column="article_like" property="article_like"/>
+        <result column="article_comment" property="article_comment"/>
+        <result column="article_view" property="article_view"/>
+        <result column="article_createtime" property="article_createtime"/>
+        <result column="article_url" property="article_url"/>
+        <result column="istop" property="istop"/>
+        <result column="article_summary" property="article_summary"/>
+    </resultMap>
+    <resultMap id="findArticleResultMap" type="com.cmx.entity.Article" extends="baseArticleResultMap">
+        <collection property="classifications" ofType="com.cmx.entity.Classification"
+                    select="com.cmx.dao.CategoryDao.findCategoryByArticleId" column="article_id">
+        </collection>
+    </resultMap>
+
     <!--  查询所有文章  -->
-    <select id = "findAllArticle" resultType= "com.cmx.entity.Article">
+    <select id = "findAllArticle" resultMap= "findArticleResultMap">
         select * from article
     </select>
+
+    <!--  通过id查询文章  -->
+    <select id = "findArticleById" parameterType="int" resultMap= "findArticleResultMap">
+        select * from article where article_id = #{article_id}
+    </select>
+
+
+
 </mapper>

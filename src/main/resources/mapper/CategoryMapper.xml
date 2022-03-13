@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "com.cmx.dao.CategoryDao" >
+    <!--通过id查询关联表中的检查组的详情-->
+    <!--  column表示数据库中字段名；property表示实体类中属性名  -->
+    <resultMap id="CategoryResultMap" type="com.cmx.entity.Category">
+        <id column="category_id" property="category_id"/>
+        <result column="article_id" property="article_id"/>
+        <collection property="classification" ofType="com.cmx.entity.Classification"
+                    select="com.cmx.dao.ClassificationDao.findClassificationById" column="classification_id">
+        </collection>
+    </resultMap>
+
+    <!--通过文章id查询关联-->
+    <select id="findCategoryByArticleId" parameterType="int" resultMap="CategoryResultMap">
+        select * from category where article_id = #{article_id}
+    </select>
+
+</mapper>
