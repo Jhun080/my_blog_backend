@@ -31,6 +31,17 @@
         select * from article where article_id = #{article_id}
     </select>
 
+    <!--  分页查询文章  -->
+    <select id = "findArticlePage" parameterType="String" resultMap="findArticleResultMap">
+        select * from article
+        <where>
+            <if test="query != null and query != ''">
+                article_title like concat('%',#{query},'%')
+            </if>
+        </where>
+        order by article_createtime desc
+    </select>
+
 
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.cmx.controller;
 
+import com.cmx.entity.QueryPage;
 import com.cmx.entity.Result;
 import com.cmx.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,17 @@ public class ArticleController {
     public Result findArticleById(int article_id){
         try {
             return new Result(200,articleService.findArticleById(article_id),"成功",true);
+        }catch (Exception e){
+            return new Result(500,null,"失败",false);
+        }
+    }
+
+    //分页查询文章
+    @CrossOrigin
+    @PostMapping("/findArticlePage")
+    public Result findArticlePage(@RequestBody QueryPage queryPage){
+        try {
+            return new Result(200,articleService.findArticlePage(queryPage),"成功",true);
         }catch (Exception e){
             return new Result(500,null,"失败",false);
         }
