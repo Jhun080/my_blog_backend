@@ -3,6 +3,10 @@ server:
   #端口号
 #  port: 8081
   port: 9615
+#  ssl:
+#    key-store: classpath:huecmx.xyz.jks
+#    key-store-password: 3dz4is0266w
+#    key-store-type: JKS
 ############################################################################
 #链接数据库配置
 spring:
