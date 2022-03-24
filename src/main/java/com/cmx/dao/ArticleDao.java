@@ -18,5 +18,7 @@ public interface ArticleDao {
     //分页查询文章
     public Page<Article> findArticlePage(String query);
 
+    //通过分类id分页查询文章
+    public Page<Article> findArticlePageByClassificationId(String classification_id);
 
 }

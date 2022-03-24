@@ -3,6 +3,7 @@ package com.cmx.service;
 import com.cmx.entity.Article;
 import com.cmx.entity.PageResult;
 import com.cmx.entity.QueryPage;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -15,5 +16,8 @@ public interface ArticleService {
 
     //分页查询文章
     public PageResult findArticlePage(QueryPage queryPage);
+
+    //通过分类id分页查询文章
+    public PageResult findArticlePageByClassificationId(QueryPage queryPage);
 
 }

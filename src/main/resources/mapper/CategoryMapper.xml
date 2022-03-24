@@ -17,4 +17,6 @@
         select * from category where article_id = #{article_id}
     </select>
 
+    <!-- 通过分类id获取 -->
+
 </mapper>

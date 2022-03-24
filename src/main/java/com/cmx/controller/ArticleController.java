@@ -45,4 +45,15 @@ public class ArticleController {
             return new Result(500,null,"失败",false);
         }
     }
+
+    //通过分类id分页查询文章
+    @CrossOrigin
+    @PostMapping("/findArticlePageByLabelId")
+    public Result findArticlePageByLabelId(@RequestBody QueryPage queryPage){
+        try {
+            return new Result(200,articleService.findArticlePageByClassificationId(queryPage),"成功",true);
+        }catch (Exception e){
+            return new Result(500,null,"失败",false);
+        }
+    }
 }

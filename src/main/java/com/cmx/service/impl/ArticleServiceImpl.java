@@ -44,4 +44,20 @@ public class ArticleServiceImpl implements ArticleService {
         long total = page.getTotal();
         return new PageResult(total,rows);
     }
+
+    //通过分类id分页查询文章
+    public PageResult findArticlePageByClassificationId(QueryPage queryPage){
+        //当前页码
+        Integer currentPage = queryPage.getCurrentPage();
+        //每页记录数
+        Integer pageSize = queryPage.getPageSize();
+        //查询条件
+        String query = queryPage.getQuery();
+        //完成分页查询，基于Mybatis提供的分页助手插件
+        PageHelper.startPage(currentPage,pageSize);
+        Page<Article> page = articleDao.findArticlePageByClassificationId(query);
+        List<Article> rows = page.getResult();
+        long total = page.getTotal();
+        return new PageResult(total,rows);
+    }
 }
