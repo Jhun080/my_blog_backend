@@ -23,4 +23,19 @@
         update user set user_token = "" where user_name = #{user_name}
     </update>
 
+    <!-- 通过用户名查询用户 -->
+    <select id="findUserByName" parameterType="string" resultType="com.cmx.entity.User">
+        select * from user where user_name = #{user_name}
+    </select>
+
+    <!-- 添加用户 -->
+    <insert id="addUser" parameterType="com.cmx.entity.User">
+        insert into user(user_name,password,user_icon) values (#{user_name},#{password},#{user_icon})
+    </insert>
+
+    <!-- 通过ID查找用户基本信息 -->
+    <select id="findUserBaseById" parameterType="string" resultType="com.cmx.entity.User">
+        select user_id,user_name,user_icon from user where user_id = #{user_id}
+    </select>
+
 </mapper>

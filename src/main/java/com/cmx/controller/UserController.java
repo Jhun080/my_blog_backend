@@ -53,4 +53,17 @@ public class UserController {
         }
     }
 
+    //注册用户
+    @CrossOrigin
+    @PostMapping("/register")
+    public Result register(@RequestBody User user){
+        try {
+            //注册用户
+            String message = userService.register(user);
+            return new Result(200,null,message,true);
+        }catch (Exception e){
+            return new Result(500,null,"当前用户名已存在",false);
+        }
+    }
+
 }

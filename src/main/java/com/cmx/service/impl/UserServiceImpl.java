@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Service
 @Transactional
@@ -48,6 +51,22 @@ public class UserServiceImpl implements UserService {
             userDao.cleanUserTokenByName(user);
         }
         //token错误
+    }
+
+    //用户注册
+    public String register(User user) throws Exception {
+        //判断当前用户名是否已经存在
+        User userInDB=userDao.findUserByName(user.getUser_name());
+        if(userInDB!=null){
+            //用户名已存在,抛出提示信息
+            throw new Exception("当前用户名已存在");
+        }else{
+            //注册用户
+            //设置默认头像
+            user.setUser_icon("default.png");
+            userDao.addUser(user);
+            return "注册成功";
+        }
     }
 
 }

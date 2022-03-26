@@ -21,4 +21,13 @@ public interface UserDao {
 
     //通过用户名清除token
     public void cleanUserTokenByName(User user);
+
+    //通过用户名查询用户
+    public User findUserByName(String user_name);
+
+    //添加用户
+    public void addUser(User user);
+
+    //通过ID查找用户基本信息
+    public User findUserBaseById(String user_id);
 }

@@ -14,4 +14,7 @@ public interface UserService {
     //退出登录
     public void loginOut(User user,String token);
 
+    //用户注册
+    public String register(User user) throws Exception;
+
 }
