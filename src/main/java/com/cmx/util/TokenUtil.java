@@ -12,8 +12,8 @@ import java.util.Map;
  * @desc   使用token验证用户是否登录s
  **/
 public class TokenUtil {
-    //设置过期时间
-    private static final long EXPIRE_DATE=30*60*100000;
+    //设置过期时间 7天
+    private static final long EXPIRE_DATE=1000*60*60*24*7;
     //token秘钥
     private static final String TOKEN_SECRET = "ZCfasfhuaUUHufguGuwu2022BQWE";
 
