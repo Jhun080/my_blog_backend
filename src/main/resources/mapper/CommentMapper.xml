@@ -33,4 +33,20 @@
         select count(comment_id) from comment
     </select>
 
+    <!--  分页查询评论  -->
+    <select id = "findCommentPage" parameterType="String" resultMap="findCommentResultMap">
+        select * from comment
+        <where>
+            <if test="query != null and query != ''">
+                comment_text like concat('%',#{query},'%')
+            </if>
+        </where>
+        order by comment_time desc
+    </select>
+
+    <!--通过评论id删除评论-->
+    <delete id="deleteCommentById" parameterType="int">
+        delete from comment where comment_id = #{comment_id}
+    </delete>
+
 </mapper>
