@@ -38,4 +38,9 @@
         select user_id,user_name,user_icon from user where user_id = #{user_id}
     </select>
 
+    <!-- 通过token查询管理员权限 -->
+    <select id="findAuthorityByToken" parameterType="string" resultType="int">
+        select user_authority from user where user_token = #{user_token}
+    </select>
+
 </mapper>

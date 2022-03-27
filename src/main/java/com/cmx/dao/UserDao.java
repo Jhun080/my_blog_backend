@@ -30,4 +30,7 @@ public interface UserDao {
 
     //通过ID查找用户基本信息
     public User findUserBaseById(String user_id);
+
+    //通过token查询管理员权限
+    public int findAuthorityByToken(String token);
 }
