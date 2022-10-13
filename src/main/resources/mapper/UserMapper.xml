@@ -43,4 +43,14 @@
         select user_authority from user where user_token = #{user_token}
     </select>
 
+    <!-- 查询用户头像地址 -->
+    <select id="findIconById" parameterType="int" resultType="string">
+        select user_icon from user where user_id = #{user_id}
+    </select>
+
+    <!--通过id修改用户头像地址-->
+    <update id="updateIconById" parameterType="com.cmx.entity.User">
+        update user set user_icon = #{user_icon} where user_id = #{user_id}
+    </update>
+
 </mapper>

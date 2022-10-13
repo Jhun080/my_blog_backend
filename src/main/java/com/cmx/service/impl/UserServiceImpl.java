@@ -3,6 +3,7 @@ package com.cmx.service.impl;
 import com.cmx.dao.UserDao;
 import com.cmx.entity.User;
 import com.cmx.service.UserService;
+import com.cmx.util.QiniuImageUtil;
 import com.cmx.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,24 @@ public class UserServiceImpl implements UserService {
             user.setUser_icon("default.png");
             userDao.addUser(user);
             return "注册成功";
+        }
+    }
+
+    //修改用户头像地址
+    public void updateIconById(String user_icon,int user_id){
+        User user=new User();
+        user.setUser_id(user_id);
+        user.setUser_icon(user_icon);
+        String oldUserIcon=userDao.findIconById(user_id);
+        //更新头像
+        userDao.updateIconById(user);
+        System.out.println(oldUserIcon);
+        if("default.png".equals(oldUserIcon)||"visiter.png".equals(oldUserIcon)){
+            //不删除
+            return;
+        }else{
+            //删除服务器中原先保存的头像
+            QiniuImageUtil.deleteFileFromQiniu("userIcon/"+oldUserIcon);
         }
     }
 

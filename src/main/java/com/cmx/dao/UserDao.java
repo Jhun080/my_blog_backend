@@ -33,4 +33,10 @@ public interface UserDao {
 
     //通过token查询管理员权限
     public int findAuthorityByToken(String token);
+
+    //查询用户头像地址
+    public String findIconById(int user_id);
+
+    //修改用户头像地址
+    public void updateIconById(User user);
 }

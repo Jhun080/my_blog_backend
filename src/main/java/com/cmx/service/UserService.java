@@ -17,4 +17,6 @@ public interface UserService {
     //用户注册
     public String register(User user) throws Exception;
 
+    //修改用户头像地址
+    public void updateIconById(String user_icon,int user_id);
 }
